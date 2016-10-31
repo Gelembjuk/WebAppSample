@@ -1,0 +1,8 @@
+##  Can be commented out if causes errors, see notes above.
+
+Options +FollowSymLinks
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteRule .* index.php?url=$0&%{QUERY_STRING} [QSA,L]
