@@ -13,7 +13,7 @@ Find the demo of this application on http://webapp.gelembjuk.com/
 
 ### Create a config file
 
-Copy app/config.inc_template.php to app/config.inc.php . Set our settings.
+Copy app/config.inc_template.php to app/config.inc.php . Set our settings. For beginning, important are $basehost (your app hostname) and DB settings (for a DB see below)
 
 ### Create a DB
 
@@ -34,5 +34,10 @@ storage/template_compile - to keep templates compilation files (Smarty needs thi
 storage/tmp - for temporary files
 
 All 3 subdirectoried must be writable by your web server user
+
+### Build a front-end
+
+Go to the directory front-dev/ with a command line and execute ./build . This will copy actual versions of front-end components to public/firectory
+
 
 
