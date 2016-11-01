@@ -1,5 +1,13 @@
 #!/bin/bash
 cd "$(dirname "$0")"
+
+mkdir -p ../public/css
+mkdir -p ../public/components/bootstrap/css
+mkdir -p ../public/components/bootstrap/fonts/
+mkdir -p ../public/components/bootstrap/js/
+mkdir -p ../public/components/jquery/
+mkdir -p ../public/components/font-awesome/css/
+mkdir -p ../public/components/font-awesome/fonts/
    
 lessc style/app.less > ../public/css/app.css
 
