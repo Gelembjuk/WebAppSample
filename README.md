@@ -1,6 +1,13 @@
 # Sample Web Application based on gelembjuk/webapp
 
+This is the demo of the PHP web application created with the gelembjuk/webapp component.
 
+The idea of the gelembjuk/webapp is to use simple and light PHP class as a core of an app, instead of frameworks. This component implements MVC model. 
+It helps to build PHP web applications fast with a focus only on a business logic.
+
+## Demo
+
+Find the demo of this application on http://webapp.gelembjuk.com/
 
 ## Installation
 

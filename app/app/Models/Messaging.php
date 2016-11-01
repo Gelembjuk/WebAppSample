@@ -139,7 +139,7 @@ class Messaging extends \Gelembjuk\WebApp\Model {
         
         $this->logQ($data,'contact');
         
-        $this->sendEmail('contact',$data,'contactadmin','noreply',$replyto);
+        $this->sendEmail('contact',$data,'contact','noreply',$replyto);
         
         $this->sendEmail('contactusercopy',$data,$email,'contact');
         
