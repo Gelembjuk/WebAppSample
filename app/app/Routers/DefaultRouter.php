@@ -3,6 +3,8 @@
 namespace app\Routers;
 
 class DefaultRouter extends \Gelembjuk\WebApp\Router {
+	protected $adminview = false;
+	
 	public function init() {
 		
 		if (!is_dir($this->options['languagespath'])) {
@@ -30,6 +32,10 @@ class DefaultRouter extends \Gelembjuk\WebApp\Router {
 		
 		return ucfirst($this->input['controller']);
 	}
+	public function checkIfAdminSide()
+	{
+		return $this->adminview;
+	}
 	public function parseUrl($url = '') {
 		if ($url == '') {
 			$url = $this->getRequestUrlPath();
@@ -38,6 +44,14 @@ class DefaultRouter extends \Gelembjuk\WebApp\Router {
 		$parsed = @parse_url($url);
 		
 		if ($parsed && isset($parsed['path'])) {
+			
+			if (preg_match('!^/administrator(/.*?)$!',$parsed['path'],$m)) {
+				$parsed['path'] = $m[2];
+				$this->adminview = true;
+			} elseif (preg_match('!^/administrator$!',$parsed['path'],$m)) {
+				$parsed['path'] = '/';
+				$this->adminview = true;
+			}
 			
 			// error page displayy
 			if (preg_match('!^/error(/|.htm)!',$parsed['path'],$m)) {
@@ -151,6 +165,10 @@ class DefaultRouter extends \Gelembjuk\WebApp\Router {
 		}
 		
 		$url = '/';
+		
+		if ($this->adminview) {
+			$url = '/administrator/';
+		}
 		
 		// add response format
 		if (isset($opts['responseformat']) && in_array($opts['responseformat'],array('json','xml'))) {

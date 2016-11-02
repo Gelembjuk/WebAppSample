@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pages>
+	<help>
+		<title>Help</title>
+		<metainfo>Information about {$config.sitename}.</metainfo>
+		<metakeywords>{$config.sitename}</metakeywords>
+	</help>
+	
+</pages>

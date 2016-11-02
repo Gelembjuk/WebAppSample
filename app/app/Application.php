@@ -3,6 +3,8 @@
 namespace app;
 
 class Application extends \Gelembjuk\WebApp\Application{
+	protected $adminmode = false;
+	
     public function __construct() {
         parent::__construct();
         $this->localeautoload = true;
@@ -40,6 +42,14 @@ class Application extends \Gelembjuk\WebApp\Application{
     protected function getDefaultControllerName() {
         return 'DefaultController';
     }
+    // to catch admin mode
+    protected function frontRouterLoaded()
+	{
+        if ($this->routerfront->checkIfAdminSide()) {
+        	$this->controllerspace = $this->options['applicationnamespace'] . 'Admin\\Controllers\\';;
+        	$this->viewspace = $this->options['applicationnamespace'] . 'Admin\\Views\\';
+        }
+	}
     /**
     * Build urls
     */
