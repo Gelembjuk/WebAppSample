@@ -5,6 +5,13 @@ namespace app;
 class Application extends \Gelembjuk\WebApp\Application{
 	protected $adminmode = false;
 	
+	/**
+	* Next 2 properties are needed to swicth to "user's" controlers when work in admin mode
+	* It is required to build links to "user's" views
+	*/
+	protected $controllerspace_orig;
+	protected $viewspace_orig;
+	
     public function __construct() {
         parent::__construct();
         $this->localeautoload = true;
@@ -46,14 +53,26 @@ class Application extends \Gelembjuk\WebApp\Application{
     protected function frontRouterLoaded()
 	{
         if ($this->routerfront->checkIfAdminSide()) {
+        	$this->controllerspace_orig = $this->controllerspace;
+        	$this->viewspace_orig = $this->viewspace; 
+        	
         	$this->controllerspace = $this->options['applicationnamespace'] . 'Admin\\Controllers\\';;
         	$this->viewspace = $this->options['applicationnamespace'] . 'Admin\\Views\\';
+        	
+        	$this->adminmode = true;
         }
 	}
     /**
     * Build urls
     */
     public function makeUrl($controllername,$opts = array()) {
+    	
+    	// this is a trick to support links to user's side from admin side
+        if (isset($opts['global']) && $this->adminmode) {
+        
+        	// this is admin mode and url must be to "user's" view
+        	$controllername = $this->getControllerFullClass($controllername, $this->controllerspace_orig);
+        }
         
         try {
             return parent::makeUrl($controllername,$opts);

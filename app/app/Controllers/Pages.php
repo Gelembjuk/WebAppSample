@@ -19,7 +19,7 @@ class Pages extends DefaultController {
     
     protected function completeUrlOpts($opts) 
     {
-        
+       
         if (isset($opts['id']) && !isset($opts['title'])) {
             // get title with models
             try {

@@ -13,3 +13,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `lastvisit` datetime NOT NULL,
   PRIMARY KEY (`id`)
 )  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `created`, `active`, `resume`, `image`, `logintype`, `externalid`, `subscription`, `lastvisit`) VALUES
+(1, 'Administrator', 'admin', 'PLAIN:admin', '2016-11-03 00:00:00', 1, NULL, '', 'site', '', 'n', NULL);

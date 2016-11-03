@@ -1,0 +1,12 @@
+adminlogin = Admin Log In
+loginbutton = Log In
+emailaddress = Email Address
+login = Login
+passwordfc = Password
+
+users = Users
+help = Help
+logout = Log Out
+
+adminhome = Admin Home Page
+settings= Settings

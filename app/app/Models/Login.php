@@ -66,6 +66,11 @@ class Login extends \Gelembjuk\WebApp\Model {
         
         $this->logQ('complete login','login');
         
+        if ($user_rec['id'] == 1) {
+        	// this is admin. redirect to admin home
+        	return $this->application->makeUrl('',array('s'=>'ahome'));
+        }
+        
         if ($referrer != '') {
             return $referrer;
         }

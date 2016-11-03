@@ -25,6 +25,33 @@
   <body>
 
     <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-xs-right">
+            <li class="nav-item{if $CURRENTPAGE=='defaultview'} active{/if}">
+              <a class="nav-link" href="/">{t k="home" g="front"} </a>
+            </li>
+            
+            
+            <li class="nav-item{if $CURRENTPAGE=='users'} active{/if}">
+              <a class="nav-link" href="{link c="Users"}">{t k="users" g="admin"}</a>
+            </li>
+            
+            
+            <li class="pull-right">
+            <a href="{link c="Login" do="logout"}" class="btn btn-primary">{t k='logout' g='admin'}</a>
+            </li>
+            <li class="nav-item{if $CURRENTPAGE=='pages' && $CURRENTSUBPAGE == 'help'} active{/if} pull-right">
+              <a class="nav-link" href="{link c="pages" id="help"}">{t k="help" g="admin"}</a>
+            </li>
+            <li class="nav-item{if $CURRENTPAGE=='settings'} active{/if} pull-right">
+              <a class="nav-link" href="{link c="settings" }">{t k="settings" g="admin"}</a>
+            </li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">{$config.sitename} {t k="adminside" g="admin"}</h3>
+      </div>
+
       
     {if $MESSAGE!=''}
         <div class="container">
@@ -43,7 +70,18 @@
       
 
       <footer class="footer">
+      	<div class="row">
+      	<div class="col-sm-6">
         <p>&copy; <a href="{link s='home'}">{$config.sitename}</a> 2016</p>
+        </div>
+        <div class="col-sm-6">
+        	<nav>
+        	<ul class="nav nav-pills pull-xs-right">
+        	<li><a class="nav-link" href="{link s="home" }">{t k="home" g="front"}</a></li>
+        	</ul>
+        	</nav>
+        </div>
+        </div>
       </footer>
 
     </div> <!-- /container -->

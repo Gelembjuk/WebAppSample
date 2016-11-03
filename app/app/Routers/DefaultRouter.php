@@ -44,9 +44,9 @@ class DefaultRouter extends \Gelembjuk\WebApp\Router {
 		$parsed = @parse_url($url);
 		
 		if ($parsed && isset($parsed['path'])) {
-			
+		
 			if (preg_match('!^/administrator(/.*?)$!',$parsed['path'],$m)) {
-				$parsed['path'] = $m[2];
+				$parsed['path'] = $m[1];
 				$this->adminview = true;
 			} elseif (preg_match('!^/administrator$!',$parsed['path'],$m)) {
 				$parsed['path'] = '/';
@@ -96,11 +96,8 @@ class DefaultRouter extends \Gelembjuk\WebApp\Router {
 				
 			} elseif (preg_match('!^/([^/]+)!',$parsed['path'],$m)) {
 				$this->input['id'] = $m[1];
-			}
-			
-			if (!empty($this->input['id'])) {
-				$_REQUEST['id'] = $this->input['id'];
-			}
+			}		
+
 		}
 		
 	}
@@ -156,6 +153,9 @@ class DefaultRouter extends \Gelembjuk\WebApp\Router {
 		if ($opts['s'] == 'home') {
 			return '/';
 		}
+		if ($opts['s'] == 'ahome') {
+			return '/administrator/';
+		}
 		
 		if (isset($opts['controller'])) {
 			$controller = $opts['controller'];
@@ -166,8 +166,10 @@ class DefaultRouter extends \Gelembjuk\WebApp\Router {
 		
 		$url = '/';
 		
-		if ($this->adminview) {
+		if ($this->adminview && !isset($opts['global'])) {
 			$url = '/administrator/';
+		} elseif (isset($opts['global'])) {
+				unset($opts['global']);
 		}
 		
 		// add response format

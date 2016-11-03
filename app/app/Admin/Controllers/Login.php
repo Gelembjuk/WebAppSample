@@ -14,6 +14,7 @@ class Login extends DefaultController {
     
     protected function doLogin() 
     {
+    	
         $email = $this->getInput('email','plainline');
         $password = $this->getInput('password','plainline');
         $rememberme = $this->getInput('rememberme','alphaext');
@@ -41,7 +42,7 @@ class Login extends DefaultController {
         // session is inited in this controller
         $this->defmodel->logOut();
 
-        return array('success',$this->makeUrl(array('s'=>'home')));;
+        return array('success',$this->makeUrl(array('s'=>'ahome')));;
     }
     protected function doUpdatepassword() 
     {

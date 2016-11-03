@@ -10,7 +10,12 @@ class Pages extends \Gelembjuk\WebApp\Model {
     
     public function init($options = array())
     {
-        $this->templatespath = $this->application->getOption('htmltemplatespath');
+    	$this->templatespath = $this->application->getOption('htmltemplatespath');
+    	
+    	if (!is_array($this->templatespath) && $options['subfolder'] != '') {
+    		$this->templatespath .= $options['subfolder'];
+    	}
+        
         $this->templatesextension = $this->application->getOption('htmltemplatesoptions')['extension'];
         
         $this->deflocale = $this->application->getConfig('defaultlocale');
@@ -22,7 +27,6 @@ class Pages extends \Gelembjuk\WebApp\Model {
         if (isset($options['pagesdir'])) {
             $this->pagesdirectory = $options['pagesdir']; 
         }
-        //$this->debug('pages dir '.$this->pagesdirectory);
     }
     
     protected function checkTemplateFileExists($pageid) 
@@ -38,6 +42,7 @@ class Pages extends \Gelembjuk\WebApp\Model {
             $path = $tmplpath.$this->pagesdirectory.'/'.$pageid.'.'.$this->templatesextension;
             
             if (file_exists($path)) {
+
                 return true;
             }
         }
@@ -104,7 +109,6 @@ class Pages extends \Gelembjuk\WebApp\Model {
     
     public function getPageMeta($pageid,$locale = '',$templatepath = '') 
     {
-        
         if (is_array($this->templatespath) && $templatepath == '') {
             // check in each path
             $lastexp = null;
