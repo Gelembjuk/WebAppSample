@@ -30,4 +30,19 @@ class User extends \Gelembjuk\DB\Base {
         return $this->getRow('SELECT * FROM '.$this->table('users').' WHERE email=\''.$this->quote($email).'\'');
     }
     
+    public function getUsers($fields = [])
+    {
+        $sql = 'SELECT ';
+        
+        if (count($fields) > 0) {
+            $sql .= implode(',', $fields);
+        } else {
+            $sql .= '*';
+        }
+        
+        $sql .= ' FROM '.$this->table('users').' WHERE id>1';
+        
+        return $this->getRows($sql);
+    }
+    
 }

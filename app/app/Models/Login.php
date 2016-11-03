@@ -514,16 +514,14 @@ class Login extends \Gelembjuk\WebApp\Model {
     protected function checkPassword($password,$passwordhash, $userid = 0)
     {
         // try all possible combinations. as we have different salts for 2 sites
-        
         if ($this->validatePassword($password,$passwordhash)) {
             return true;
         }
         
-        if ($passwordhash == 'PLAIN:'.$password) {
+        if ($passwordhash == 'PLAIN:'.$password && $userid > 0) {
             $this->upgradePassword($userid,$password);
             return true;
         }
-        
         return false;
     }
     protected function getHashed($string,$emptysalt = false,$salt = '') {

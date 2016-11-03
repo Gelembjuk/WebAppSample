@@ -9,4 +9,9 @@ help = Help
 logout = Log Out
 
 adminhome = Admin Home Page
+adminside = Admin Side
 settings= Settings
+
+name = Name
+created = Created
+active = Active

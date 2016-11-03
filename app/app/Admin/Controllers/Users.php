@@ -8,6 +8,6 @@ use \Gelembjuk\WebApp\Exceptions\FormException as FormException;
 class Users extends DefaultController {
     public function init() 
     {
-        //$this->defmodel = $this->application->getModel('Profile');
+        $this->defmodel = $this->application->getModel('ManUser');
     }
 }

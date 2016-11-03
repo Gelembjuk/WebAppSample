@@ -9,7 +9,7 @@ class Settings extends DefaultController {
     public function init() 
     {
         
-        //$this->defmodel = $this->application->getModel('Profile');
+        $this->defmodel = $this->application->getModel('Profile');
     }
     protected function doUpdatepassword() 
     {
@@ -20,11 +20,11 @@ class Settings extends DefaultController {
             $this->defmodel->updatePassword($curpassword,$password);
             
             return array('success',
-                $this->application->makeUrl('Profile',array('message'=>'s:'.$this->_('passwordupdated','account'))));
+                $this->makeUrl(array('message'=>'s:'.$this->_('passwordupdated','account'))));
         } catch (\Exception $exception) {
             // model will rteurn Exception, but we need extended exception with a redirect url
             throw new DoException(
-                $this->application->makeUrl('Profile',array('message'=>'e:'.$exception->getMessage())),
+                $this->makeUrl(array('message'=>'e:'.$exception->getMessage())),
                 $exception->getMessage(),'password',400,'redirect');
         }
     }

@@ -23,11 +23,11 @@ class Profile extends Login {
             // update login type. it can be old user registered on MEP
             $logindb->updateUserLoginType($user_rec['id'],'site');
         }
-        
+        $this->debug(1);
         if (!$this->checkPassword($curpassword,$user_rec['password'])) {
             throw new \Exception($this->_('curpassworddoesntmatch','account'));
         }
-        
+        $this->debug(3);
         if ($user_rec['active'] == '0') {
             throw new \Exception($this->_('accountisnotactive','account'));
         }

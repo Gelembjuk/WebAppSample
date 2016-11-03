@@ -180,9 +180,7 @@ class DefaultRouter extends \Gelembjuk\WebApp\Router {
 		
 		if ('DefaultController' != $controller) {
 			$url .= strtolower($controller) . '/';
-		} else {
-			$url .= 'def/';
-		}
+		} 
 		
 		if (isset($opts['view'])) {
 			$url .= 'v/'.$opts['view'].'/';

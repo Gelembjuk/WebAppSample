@@ -144,4 +144,12 @@ class Application extends \Gelembjuk\WebApp\Application{
         }
         return parent::getUserRecord();
     }
+    public function isAdmin()
+    {
+    	if ($this->getUserID() == 1) {
+    		// the user with ID 11 is admin
+    		return true;
+    	}
+    	return false;
+    }
 }  
