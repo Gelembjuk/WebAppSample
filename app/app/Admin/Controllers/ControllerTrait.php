@@ -18,5 +18,10 @@ trait ControllerTrait {
         } else {
         	$this->signinreqired = true;
         }
+        
+        // this is loged in user, but not admin
+        if ($this->application->getUserID() > 1) {
+        	$this->application->setUserID(0);
+        }
     }
 }

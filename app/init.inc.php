@@ -27,8 +27,13 @@ require_once('config.inc.php');
 $options = array(
 	'webroot' => $MYWEBSITE_WEB_DIR,
 	'tmproot' => $MYWEBSITE_TEMP_DIR,
+	// logging. Use standard configuration
+	'loggerstandard' => true,
 	'logdirectory' => $MYWEBSITE_DIR ."/../storage/logs/",
-	'applicationnamespace' => '\\app\\',
+	
+	'applicationnamespaceprefix' => '\\app\\',
+	'defaultroutername' => 'DefaultRouter',
+	'defaultcontrollername' => 'DefaultController',
 	'errorhandlerclass' => '\\Gelembjuk\\Logger\\ErrorScreen',
 	'errorhandlerobjectoptions' => array(
 		'catchwarnings' => true, 
@@ -37,7 +42,9 @@ $options = array(
 		'showfatalmessage' => true,
 		'showtrace' => true
 	),
-	'languagespath' => $MYWEBSITE_DIR.'../resources/lang/',
+	// init localization system.
+	'languagesstandard' => true,
+	'languagespath' => $MYWEBSITE_DIR . '../resources/lang/',
 	
 	'htmltemplatespath' => $MYWEBSITE_DIR.'../resources/views/',
 	'htmltemplatesoptions' => array(

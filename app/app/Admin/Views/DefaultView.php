@@ -13,7 +13,7 @@ class DefaultView extends \app\Views\DefaultView
     protected function view() {
         $this->htmltemplate = 'login';
         
-        if ($this->application->getUserID() > 0) {
+        if ($this->application->getUserID() == 1) {
             // if user is logged in then show his home page
             $this->htmltemplate = 'home';
         }

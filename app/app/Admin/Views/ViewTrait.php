@@ -3,6 +3,14 @@
 namespace app\Admin\Views;
 
 trait ViewTrait {
+	public function init() 
+    {
+        parent::init();
+        // this is loged in user, but not admin
+        if ($this->application->getUserID() > 1) {
+        	$this->application->setUserID(0);
+        }
+    }
 	protected function beforeDisplay() {
         // set some extra information like user, some special links etc
         if ($this->responseformat == 'html') {
@@ -33,7 +41,7 @@ trait ViewTrait {
             // outer template. It is the single in our case
             $this->htmlouttemplate_force = 'default';
             
-            if ($this->application->getUserID() > 0) {
+            if ($this->application->getUserID() == 1) {
                     $this->htmlouttemplate_force = 'in';
             }
         }
