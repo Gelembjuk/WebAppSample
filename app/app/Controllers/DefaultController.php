@@ -5,33 +5,13 @@ namespace app\Controllers;
 use \Gelembjuk\WebApp\Exceptions\DoException as DoException;
 
 class DefaultController extends \Gelembjuk\WebApp\Controller {
- 
-    protected function getRouter() 
-    {
-        return $this->application->getRouter('DefaultRouter');
-    }
-    
+	    
     protected function getViewer($name = '') 
     {
         if ($this->getName() == 'DefaultController') {
-            return $this->application->getView('DefaultView',$this->router,$this);
+        	$this->defviewname = 'DefaultView';
         }
         return parent::getViewer(); // presume all other controllers will have views with same names
-    }
-    
-    protected function getDefaultURI($message = null) 
-    {
-        $opts = array();
-        
-        if ($message !== null) {
-            $opts = array('message'=>$message);
-        }
-        return $this->router->makeUrl($opts);
-    }
-    
-    protected function getErrorURI($message)
-    {
-        return $this->router->makeUrl(array('error'=>$message));
     }
     
     public function makeUrlQ($message='',$methodtype = '', $methodname = '',
